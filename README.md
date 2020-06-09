@@ -8,3 +8,4 @@ This project works on how deep learning models, especially domain adaptation dee
 - [Dr. Zhibo Zhang](https://physics.umbc.edu/people/faculty/zhang/), Department of Physics, UMBC
 - [Dr. Chenxi Wang](https://science.gsfc.nasa.gov/sed/bio/chenxi.wang), NASA/GSFC and JCET, UMBC
 - Xin Huang, Department of Information Systems, UMBC
+- Sahara Ali, Department of Information Systems, UMBC
