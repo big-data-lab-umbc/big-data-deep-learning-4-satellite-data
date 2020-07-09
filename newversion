@@ -1,0 +1,593 @@
+%%
+%% This is file `sample-sigconf.tex',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% samples.dtx  (with options: `sigconf')
+%% 
+%% IMPORTANT NOTICE:
+%% 
+%% For the copyright see the source file.
+%% 
+%% Any modified versions of this file must be renamed
+%% with new filenames distinct from sample-sigconf.tex.
+%% 
+%% For distribution of the original source see the terms
+%% for copying and modification in the file samples.dtx.
+%% 
+%% This generated file may be distributed as long as the
+%% original source files, as listed above, are part of the
+%% same distribution. (The sources need not necessarily be
+%% in the same archive or directory.)
+%%
+%% The first command in your LaTeX source must be the \documentclass command.
+\documentclass[sigconf]{acmart}
+
+%%
+%% \BibTeX command to typeset BibTeX logo in the docs
+\AtBeginDocument{%
+  \providecommand\BibTeX{{%
+    \normalfont B\kern-0.5em{\scshape i\kern-0.25em b}\kern-0.8em\TeX}}}
+
+%% Rights management information.  This information is sent to you
+%% when you complete the rights form.  These commands have SAMPLE
+%% values in them; it is your responsibility as an author to replace
+%% the commands and values with those provided to you when you
+%% complete the rights form.
+\setcopyright{acmcopyright}
+\copyrightyear{2020}
+\acmYear{2020}
+\acmDOI{10.1145/1122445.1122456}
+
+%% These commands are for a PROCEEDINGS abstract or paper.
+\acmConference[DeepSpatial '20]{DeepSpatial '20: 1st ACM SIGKDD Workshop on Deep Learning for Spatiotemporal Data, Applications, and Systems}{August 24, 2020}{KDD Virtual Conference}
+\acmBooktitle{DeepSpatial 2020, August 24, 2020, SIGKDD Workshop}
+
+
+%%
+%% Submission ID.
+%% Use this when submitting an article to a sponsored event. You'll
+%% receive a unique submission ID from the organizers
+%% of the event, and this ID should be used as the parameter to this command.
+%%\acmSubmissionID{123-A56-BU3}
+
+%%
+%% The majority of ACM publications use numbered citations and
+%% references.  The command \citestyle{authoryear} switches to the
+%% "author year" style.
+%%
+%% If you are preparing content for an event
+%% sponsored by ACM SIGGRAPH, you must use the "author year" style of
+%% citations and references.
+%% Uncommenting
+%% the next command will enable that style.
+%%\citestyle{acmauthoryear}
+
+%%
+%% end of the preamble, start of the body of the document source.
+\begin{document}
+
+%%
+%% The "title" command has an optional parameter,
+%% allowing the author to define a "short title" to be used in page headers.
+\title{Deep Multi-Sensor Domain Adaptation on Active and Passive Satellite Remote Sensing Data}
+
+%%
+%% The "author" command and its associated commands are used to define
+%% the authors and their affiliations.
+%% Of note is the shared affiliation of the first two authors, and the
+%% "authornote" and "authornotemark" commands
+%% used to denote shared contribution to the research.
+\author{Xin Huang}
+\affiliation{%
+  \institution{Department of Information Systems, University of Maryland, Baltimore County}
+  \city{Baltimore, MD}
+  \country{USA}}
+\email{xinh1@umbc.edu}
+
+\author{Sahara Ali}
+\affiliation{%
+  \institution{Department of Information Systems, University of Maryland, Baltimore County}
+  \city{Baltimore, MD}
+  \country{USA}}
+\email{sali9@umbc.edu}
+
+\author{Sanjay Purushotham}
+\affiliation{%
+  \institution{Department of Information Systems, University of Maryland, Baltimore County}
+  \city{Baltimore, MD}
+  \country{USA}}
+\email{psanjay@umbc.edu}
+
+\author{Jianwu Wang}
+\affiliation{%
+  \institution{Department of Information Systems, University of Maryland, Baltimore County}
+  \city{Baltimore, MD}
+  \country{USA}}
+\email{jianwu@umbc.edu}
+
+\author{Chenxi Wang}
+\affiliation{%
+  \institution{Goddard Space Flight Center, National Aeronautics and Space Administration}
+  \city{Greenbelt, MD}
+  \country{USA}}
+\email{chenxi.wang@nasa.gov}
+
+\author{Zhibo Zhang}
+\affiliation{%
+  \institution{Department of Physics, University of Maryland, Baltimore County}
+  \city{Baltimore, MD}
+  \country{USA}}
+\email{zhibo.zhang@umbc.edu}
+
+
+%%
+%% By default, the full list of authors will be used in the page
+%% headers. Often, this list is too long, and will overlap
+%% other information printed in the page headers. This command allows
+%% the author to define a more concise list
+%% of authors' names for this purpose.
+\renewcommand{\shortauthors}{Huang, et al.}
+
+%%
+%% The abstract is a short summary of the work to be presented in the
+%% article.
+\begin{abstract}
+Studies have shown that machine learning (ML) algorithms such as Random Forests could outperform the physical-based algorithms in remote sensing applications. However, these ML algorithms are not well-suited to learn from heterogeneous sources such as multiple active and passive sensors. For example, Random Forest can be either developed for Cloud-Aerosol Lidar and Infrared Pathfinder Satellite Observations (CALIPSO) or Visible Infrared Imaging Radiometer Suite (VIIRS) sensor data, but it cannot jointly learn from both these sensors since there is a mismatch of features (variables) among the sensors. On the other hand, domain adaptation techniques have been developed to handle data from multiple sources or domains. But most existing domain adaptation approaches assume that the source and target domains are homogeneous i.e., they have the same feature space, and the difference between domains primarily arises due to the data distribution drifting. Nevertheless, many real world applications often deal with data from heterogeneous domains that come from completely different feature spaces. For example, in our remote sensing application, the source domain, namely CALIPSO, contains data of 25 attributes collected by the active spaceborne Lidar sensor; and the target domain, namely VIIRS, contains another group of data of 20 attributes collected by passive spectroradiometer sensor. CALIPSO has better representation capability and sensitivity to aerosol types and cloud phase, while VIIRS has wide swaths and better spatial coverage but has inherent weakness in differentiating atmospheric objects on different vertical levels. To address this mismatch of features across the domains (sensors), we propose a novel deep learning based heterogeneous domain adaptation framework called Deep Multi-Sensor Domain Adaptation (DMSDA) to 1) learn the domain invariant representations from source CALIPSO and target VIIRS domains by transferring the knowledge across these domains, and 2) better classify the different cloud phase types in the source and target domains. Our experiments on a collocated CALIPSO and VIIRS sensor dataset showed that DMSDA can achieve 69\% classification accuracy in predicting the cloud phase types that is at least 23\% improvement and outperformed other ML approaches employed in comparison.
+\end{abstract}
+
+%%
+%% The code below is generated by the tool at http://dl.acm.org/ccs.cfm.
+%% Please copy and paste the code instead of the example below.
+%%
+\begin{CCSXML}
+<ccs2012>
+ <concept>
+  <concept_id>10010520.10010553.10010562</concept_id>
+  <concept_desc>Computer systems organization~Embedded systems</concept_desc>
+  <concept_significance>500</concept_significance>
+ </concept>
+ <concept>
+  <concept_id>10010520.10010575.10010755</concept_id>
+  <concept_desc>Computer systems organization~Redundancy</concept_desc>
+  <concept_significance>300</concept_significance>
+ </concept>
+ <concept>
+  <concept_id>10010520.10010553.10010554</concept_id>
+  <concept_desc>Computer systems organization~Robotics</concept_desc>
+  <concept_significance>100</concept_significance>
+ </concept>
+ <concept>
+  <concept_id>10003033.10003083.10003095</concept_id>
+  <concept_desc>Networks~Network reliability</concept_desc>
+  <concept_significance>100</concept_significance>
+ </concept>
+</ccs2012>
+\end{CCSXML}
+
+
+%%
+%% Keywords. The author(s) should pick words that accurately describe
+%% the work being presented. Separate the keywords with commas.
+\keywords{domain adaptation, remote sensing, cloud type detection, deep learning, machine learning}
+
+%% A "teaser" image appears between the author and affiliation
+%% information and the body of the document, and typically spans the
+%% page.
+% \begin{teaserfigure}
+%   \includegraphics[width=\textwidth]{sampleteaser}
+%   \caption{Seattle Mariners at Spring Training, 2010.}
+%   \Description{Enjoying the baseball game from the third-base
+%   seats. Ichiro Suzuki preparing to bat.}
+%   \label{fig:teaser}
+% \end{teaserfigure}
+
+%%
+%% This command processes the author and affiliation and title
+%% information and builds the first part of the formatted document.
+\maketitle
+
+\section{Introduction}
+Cloud and atmospheric aerosols are two critical components that significantly impact Earth’s radiative energy balance, hydrological and biological cycles, air quality and human health \cite{Boucher2013}. For example, clouds constantly cover about two-third of Earth’s surface and alter global energy distribution by reflecting solar radiation and absorbing thermal emission from the surface. Satellite-based remote sensing is the only means to monitor the global distribution of aerosols and clouds. Thus, improvements in aerosol and cloud observations are a major focus of NASA’s Earth Science endeavor, and numerous satellite sensors have been developed to observe and retrieve aerosol and cloud properties. They can be largely divided into two groups: active sensors such as spaceborne Lidar (e.g., CALIPSO) and Radar (e.g., CloudSat) and passive sensors such as Moderate Resolution Imaging Spectroradiometer (MODIS), VIIRS and Advanced Baseline Imager (ABI). Active sensors collect data by providing their own source of energy to illuminate the objects they observe; while passive sensors collect different sets of data attributes by detecting natural energy (radiation) that is emitted or reflected by the object. The advantages of active sensors, compared to passive sensors, include their capability of resolving the vertical location of aerosol/cloud layer; better sensitivity to aerosol type and cloud phase; better performance during nighttime and polar region. On the other hand, passive sensors have sensors that observe column integrated radiation and have inherent weaknesses in differentiating atmospheric objects on different vertical levels. However, passive sensors always have wide swaths and better spatial coverage. Classifying the pixel level cloud types is an important application in the satellite remote sensing. By employing both active and passive sensing data, we aim to classify 6 cloud types, which are Clear and Clean (no cloud, no aerosol), Pure Liquid Cloud (no ice cloud, no aerosol), Pure Ice Cloud (no liquid cloud, no aerosol), Pure Cloud (have both ice and liquid clouds, no aerosol), Pure Aerosol (no cloud, aerosol only), Cloud and Aerosol. 
+
+Our previous study~\cite{Wang2020} has shown proper use of machine learning algorithms, such as Random Forest (RF), can have better cloud type detection accuracy than physical-based algorithms. However, the algorithms cannot directly learn from multiple active and passive sensors. For example, RF can be either developed for CALIPSO or VIIRS data, but it cannot jointly learn from both these sensors since there is a mismatch of features (variables) among the sensors. RF and other ML algorithms do not generalize to new combinations of the learned features beyond those seen during the training process. Moreover, many ML algorithms generally cannot do joint label predictions if the labels are missing for one of these sensors during training time. To address these issues, we employ deep learning (DL) models which can automatically learn feature representations from multiple sensors with different features / variables in an end-to-end fashion. Our DL models will be able to predict labels for all sensors even when the labels are absent for some sensors at training time by transferring knowledge from one set of sensors (e.g., CALIPSO) to other sensors (e.g., VIIRS).
+
+\begin{figure*}[ht]
+    \centering
+    \includegraphics[width=1.0\textwidth]{./DMSDA.png}
+    \caption{Network Architecture of Deep Multi-Sensor Domain Adaptation with Domain Mapping and Correlation Alignment. Deep Domain Mapping is used to map the target domain into the feature space of source domain. The trained model uses several multilayer perceptron (MLP) layers to learn the shared representative features between the source and target domain. A correlation layer is added to the end of network. In correlation layer, different colors represent different cloud types (labels) that the model aims to classify; Different shapes represents different dimensionalities and attribute sets of two domains, to exemplify  the heterogeneity of source and target domain.}
+    \label{fig:framework}
+\end{figure*}
+
+Domain adaptation has been thoroughly studied in computer vision \cite{Gong2012} , \cite{Fernando2013}  and natural language processing (NLP) applications \cite{Blitzer2007}, \cite{Foster2010}. Recently, the deep learning paradigm has become popular in domain adaptation due to its ability to learn rich, flexible, non-linear domain-invariant representations \cite{Tzeng2015}, \cite{Purushotham2016}. However, few of these approaches have been adapted for remote sensing applications. Moreover, domain adaptation techniques using deep neural network have been mainly used to solve the distribution drifting problem in homogeneous domains \cite{Sun2016}. The data in the homogeneous domains usually share similar feature spaces and have the same dimensionalities. Nevertheless, real world applications often deal with heterogeneous domains that come from completely different feature spaces and different dimensionalities. In our remote sensing application, the two remote sensor datasets collected by active and passive sensors respectively are heterogeneous. In particular, CALIPSO actively collects 25 bands of sensing data, it has better sensitivity to aerosol types and cloud phase, and the data are fully labeled with 6 cloud types. VIIRS uses spectroradiometer sensor to passively collect 20 bands of sensing data with no label for cloud types; has wide swaths and better spatial coverage but lacks the sensitivity to the cloud types. 
+
+Our contribution is to classify different cloud types for the massive unlabeled records in the passive / target domain data (VIIRS) by learning the transferable representation of the cloud types from the active source domain (CALIPSO). We develop an unsupervised Deep Multi-Sensor Domain Adaptation (DMSDA) model to learn feature representations from multiple heterogeneous sensors. Our experiments show the effectiveness of our approach in learning the domain invariant representation for the heterogeneous domains. 
+
+\section{Related Work}
+Over the past few decades, a variety of aerosol and cloud remote sensing algorithms have been developed based on the physical principles and the radiative transfer of light scattering and absorption within aerosol and cloud fields (see review by \cite{Ackerman2018}). These physical-based algorithms are the backbone of many widely used aerosol and cloud property products for weather and climate studies \cite{Ackerman2008},\cite{Hsu2013}. Traditionally, many of these algorithms use a lookup table (LUT) approach, in that one must prescribe aerosol and surface properties. The challenge is to ensure that the algorithm has the means to select the appropriate model. 	
+
+Although highly successful, it is challenging to improve these physical-based algorithms. For example, according to \cite{Martins2002}, there is no absolute separation between “aerosol” and “cloud”. Most, if not all, retrieval techniques that rely on manually setting thresholds for scene calibration, etc., may be different enough that a threshold applied for one sensor may need revision for another. Thus, physical-based algorithms are expensive.
+
+Machine Learning (ML) and Artificial Intelligence (AI) techniques may overcome the challenges facing physical-based algorithms. Since ML algorithms are written to autonomously find information (e.g., patterns of spectral, spatial, and/or time series), they can learn hidden signatures of different types of objects. ML algorithms are portable and can be easily applied to active and/or passive sensor measurements. \cite{Wang2020} introduced two Random Forest (RF) machine learning models for cloud mask and cloud thermodynamic phase detection using spectral observations from Visible Infrared Imaging Radiometer Suite (VIIRS) on board Suomi National Polar-orbiting Partnership (SNPP). \cite{zhang2018deterministic} developed a deterministic self-organizing map (SOM) approach and applied it on satellite data based cloud type classification. Deep learning \cite{Lecun2015} is also a promising technique, already having revolutionized many fields such as computer vision \cite{He2016}, natural language processing \cite{Mikolov2013}, and is increasingly being used in remote sensing applications \cite{Zhang2016}. Those approaches can learn representations of multiple variables in a single domain. 
+
+Domain Adaptation has been widely used in learning domain invariant representation from source and target domains. In unsupervised domain adaptation with unlabeled target domain, Several approaches have been developed to minimize the feature distribution difference  between the source domain and target domain. DCC \cite{Tzeng2014} and DAN \cite{Long2015} have used Maximum Mean Discrepancy (MMD) loss training the deep neural network and learn a representation that is both discriminative and domain invariant. \cite{Sun2016} introduced a correlation alignment based method in the homogeneous domain adaptation in computer vision. Its architecture is based on CNN with a classification layer, and a correlation layer is used to minimize the difference in the second-order statistics between the source and target domains. \cite{Tzeng2017} introduced an adversarial learning based domain adaptation method that combines adversarial learning with discriminative feature learning. It specifically learns a discriminative mapping of target images to the source feature space by simultaneously fooling a domain discriminator in distinguishing the encoded target images from source images. The state of art approaches are mostly applicable to solve the homogeneous domain adaptation in image classification, in which the source and target domains are both two dimensional data and share similar feature space. To our knowledge, few of the deep domain adaptation approaches have been used in the remote sensing application or in the heterogeneous domains \cite{Wang2018DeepVD}, especially with the heterogeneous nature of datasets collected by active and passive sensors.  
+
+
+\section{Deep Multiple-Sensor Domain Adaptation (DMSDA)}
+
+The remote satellite sensing data raises more challenges as the data captured by passive sensor and active Lidar are high dimensional, globally covered and heterogeneous in nature. In this paper, we propose a Deep Multi-Sensor Domain Adaptation approach (DMSDA) and apply it to classify the heterogeneous remote satellite cloud and aerosol types. Our approach introduces a heterogeneous domain matching to map the target domain into the feature space of source domain, and uses shared multilayer perceptron (MLP) layers to train the shared representative features between the source and target domain. At last, it adds a correlation layer to the end of the shared layers, inspired by the idea of correlation alignment introduced in \cite{Sun2016}. By incorporating the correlation loss and classification loss in training the domain adaptation network, we find the network can maximize the classification accuracy on the target domain by minimizing the difference in the second-order statistics between the source and target domains. Figure~\ref{fig:framework} demonstrates our end to end Deep Multi-Sensor Domain Adaptation with domain mapping and correlation alignment. 
+
+
+\subsection{Deep Domain Mapping (DDM)}
+
+In this section, we explore the heterogeneity of our source (active) and target (passive) remote sensing data, and introduce our Deep Domain Mapping approach to transform the  target domain into the feature space of source domain.
+\subsubsection{\textbf{Heterogeneous Source and Target Domain}}
+
+% \begin{figure*}[ht]
+%     \centering
+%     \includegraphics[width=1.0\textwidth]{./pairwise.png}
+%     \caption{Pairplots for the first 3 bands / features of the CALIPSO (left) and VIIRS (right) datasets. Each plot shows the pairwise relationship of columns in a dataset. The x-axis and y-axis show the band index of the sensing data, and different color shows different cloud type (label). The CALIPSO data (left) is more distinguishable as we can even draw some linear straight line to separate different cloud types; while the VIIRS data (Right) is difficult to infer the cloud type as the majority of data are mixed togother. 
+% .}
+%     \label{fig:pairwise}
+% \end{figure*}
+
+\begin{figure*}[ht]
+    \centering
+    \subfigure{\includegraphics[width=0.44\textwidth]{samples/calipso_pair1.png}} 
+    \subfigure{\includegraphics[width=0.44\textwidth]{samples/calipso_pair2.png}} 
+    \caption{Pairwise relationship plot between CALIOP\_Alay\_Top\_Altitude and CALIOP\_Alay\_Base\_Altitude (Left); CALIOP\_Alay\_Top\_Altitude and CALIOP\_Alay\_Top\_Temperature (Right) in CALIPSO (active) dataset. Different color shows different cloud type (label).}
+    \label{fig:pairwisec}
+\end{figure*}
+
+\begin{figure*}[ht]
+    \centering
+    \subfigure{\includegraphics[width=0.44\textwidth]{samples/viirs_pair1.png}} 
+    \subfigure{\includegraphics[width=0.44\textwidth]{samples/viirs_pair2.png}} 
+    \caption{Pairwise relationship plot between VIIRS\_M14 and VIIRS\_M15 (Left); VIIRS\_M14 and VIIRS\_M16 (Right) in VIIRS (passive) dataset. Different color shows different cloud type (label).}
+    \label{fig:pairwisev}
+\end{figure*}
+
+\begin{table*}[]
+\caption{Attributes/features of CALIPSO satellite sensor.}
+\begin{tabular}{|l|l|l|}
+\hline
+  & Name & Description \\
+\hline
+1 & CALIOP\_N\_Clay\_1km & CALIOP Number of Cloud Layers 1km \\
+\hline
+2  & CALIOP\_N\_Clay\_5km & CALIOP Number of Cloud Layers 5km \\
+\hline
+3  & CALIOP\_Liq\_Fraction\_1km & CALIOP Cloud Layer Liquid Phase Fraction 1km \\
+\hline
+4  & CALIOP\_Liq\_Fraction\_5km & CALIOP Cloud Layer Liquid Phase Fraction 5km \\
+\hline
+5  & CALIOP\_Ice\_Fraction\_1km & CALIOP Cloud Layer Ice Phase Fraction 1km \\
+\hline
+6 & CALIOP\_Ice\_Fraction\_5km & CALIOP Cloud Layer Ice Phase Fraction 5km \\
+\hline
+7 & CALIOP\_Clay\_Top\_Altitude & CALIOP Cloud Layer Top Altitude \\
+\hline
+8  & CALIOP\_Clay\_Base\_Altitude & CALIOP Cloud Layer Base Altitude \\
+\hline
+9 & CALIOP\_Clay\_Top\_Temperature  & CALIOP Cloud Layer Top Temperature \\
+\hline
+10 & CALIOP\_Clay\_Base\_Temperature  & CALIOP Cloud Layer Base Temperature \\
+\hline
+11 & CALIOP\_Clay\_Optical\_Depth\_532  & CALIOP Cloud Layer 532nm Optical Depth \\
+\hline
+12 & CALIOP\_Clay\_Opacity\_Flag  & CALIOP Cloud Layer Opacity Flag \\
+\hline
+13 & CALIOP\_Clay\_Integrated\_Attenuated\_Backscatter\_532  & CALIOP Cloud Layer Integrated Attenuated Backscatter 532nm \\
+\hline
+14 & CALIOP\_Clay\_Integrated\_Attenuated\_Backscatter\_1064  & CALIOP Cloud Layer Integrated Attenuated Backscatter 1064nm \\
+\hline
+15 & CALIOP\_Clay\_Final\_Lidar\_Ratio\_532  & CALIOP Cloud Layer Lidar Ratio 532nm \\
+\hline
+16 & CALIOP\_Clay\_Color\_Ratio  & CALIOP Cloud Layer Color Ratio \\
+\hline
+17 & CALIOP\_Alay\_Top\_Altitude & CALIOP Aerosol Layer Top Altitude \\
+\hline
+18 & CALIOP\_Alay\_Base\_Altitude & CALIOP Aerosol Layer Base Altitude \\
+\hline
+19 & CALIOP\_Alay\_Top\_Temperature & CALIOP Aerosol Layer Top Temperature\\
+\hline
+20 & CALIOP\_Alay\_Base\_Temperature & CALIOP Aerosol Layer Base Temperature\\
+\hline
+21 & CALIOP\_Alay\_Integrated\_Attenuated\_Backscatter\_532 & CALIOP Aerosol Layer Integrated Attenuated Backscatter 532nm\\
+\hline
+22 & CALIOP\_Alay\_Integrated\_Attenuated\_Backscatter\_1064 & CALIOP Aerosol Layer Integrated Attenuated Backscatter 1064nm\\
+\hline
+23 & CALIOP\_Alay\_Color\_Ratio & CALIOP Aerosol Layer Color Ratio\\
+\hline
+24 & CALIOP\_Alay\_Optical\_Depth\_532 & CALIOP Aerosol Layer 532nm Optical Depth\\
+\hline
+25 & CALIOP\_Alay\_Aerosol\_Type\_Mode & CALIOP Aerosol Layer Type\\
+\hline
+\end{tabular}
+\label{tab:CALIPSOFeatures}
+\end{table*}
+
+\begin{table*}[]
+\caption{Attributes/features of VIIRS satellite sensor.}
+\begin{tabular}{|l|l|l|}
+\hline
+  & Name & Description \\
+\hline
+1 &
+VIIRS\_SZA & viirs solar zenith angle in degree \\
+\hline
+2 &
+VIIRS\_SAA & viirs solar azimuthal angle in degree\\
+\hline
+3 & 
+VIIRS\_VZA & viirs viewing zenith angle in degree\\
+\hline
+4 & 
+VIIRS\_VAA & viirs viewing azimuthal angle in degree\\
+\hline
+5 & 
+VIIRS\_M1 & Band wavelength range 0.402-0.422$\mu$m\\
+\hline
+6 & 
+VIIRS\_M2 & Band wavelength range 0.436-0.454$\mu$m\\
+\hline
+7 & 
+VIIRS\_M3 & Band wavelength range 0.478-0.488$\mu$m\\
+\hline
+8 &  
+VIIRS\_M4 & Band wavelength range 0.545-0.565$\mu$m\\
+\hline
+9 & 
+VIIRS\_M5\_B & Band wavelength range 0.662-0.682$\mu$m\\
+\hline
+10 & 
+VIIRS\_M6 & Band wavelength range 0.739-0.754$\mu$m \\
+\hline
+11 & VIIRS\_M7\_G & Band wavelength range 0.846-0.885$\mu$m\\
+\hline
+12 & VIIRS\_M8 & Band wavelength range 1.23-1.25$\mu$m\\
+\hline
+13 & VIIRS\_M9 & Band wavelength range 1.371-1.386$\mu$m\\
+\hline
+14 & VIIRS\_M10\_R & Band wavelength range 1.58-1.64$\mu$m\\
+\hline
+15 & VIIRS\_M11 & Band wavelength range 2.23-2.28$\mu$m\\
+\hline
+16 & VIIRS\_M12 & Band wavelength range 3.61-3.79$\mu$m\\
+\hline
+17 & VIIRS\_M13 & Band wavelength range 3.97-4.13$\mu$m\\
+\hline
+18 & VIIRS\_M14 & Band wavelength range 8.4-8.7$\mu$m\\
+\hline
+19 & VIIRS\_M15 & Band wavelength range 10.26-11.26$\mu$m\\
+\hline
+20 & VIIRS\_M16 & Band wavelength range 11.54-12.49$\mu$m\\
+\hline
+\end{tabular}
+\label{tab:VIIRSFeatures}
+\end{table*}
+
+\begin{table*}[]
+\caption{Attributes/features shared between CALIPSO and VIIRS.}
+\begin{tabular}{|l|l|l|}
+\hline
+  & Name & Description \\
+\hline
+1 & Latitude  & Latitude \\
+\hline
+2 & Longitude & Longitude \\
+\hline
+3 & Surface\_Temperature & Surface temperature in Kelvin\\
+\hline
+4 & Surface\_Emissivity & Land surface emissivity\\
+\hline
+5 & IGBP\_SurfaceType &  International Geosphere–Biosphere Programme surface classification\\
+\hline
+6 & SnowIceIndex & Snow/Sea Ice data\\
+\hline
+\end{tabular}
+\label{tab:CALVIIRSFeatures}
+\end{table*}
+
+In heterogeneous domain adaptation, the feature spaces between the source and target domains are nonequivalent and the dimensions may also generally differs \cite{Wang2018DeepVD}. In our satellite remote sensing application, the source (active) domain data, CALIPSO, contains sensing data of 25 attributes collected by the active spaceborne Lidar sensor, shown in Table~\ref{tab:CALIPSOFeatures}; and the target (passive) domain data, VIIRS, contains another group of sensing data of 20 attributes collected by passive spectroradiometer sensor, shown in ~\ref{tab:VIIRSFeatures}. From the attribute names and descriptions in the Table~\ref{tab:CALIPSOFeatures} and Table~\ref{tab:VIIRSFeatures}, we can see the two remote sensing datasets have completely different feature spaces due to the nature of the data they collect. Figure~\ref{fig:pairwisec} and Figure~\ref{fig:pairwisev} show the pairwise plot for selected attributes from the source and target domains. The pair plots show CALIPSO and VIIRS have heterogeneous data ranges for each band across the domains. It also reveals the CALIPSO data has better separations for the cloud types as the data are more evenly distributed compared to VIIRS in which the majority data are mixed together in the distribution.
+
+\subsubsection{\textbf{Deep Mapping Method}}
+To adapt to the completely different feature spaces and heterogeneity of the source and target domain, we introduce a Deep Learning based approach to learn a transformer to map the target feature space into the source feature space. It not only equalizes the number of features in source and target domains, but also aligns the feature distribution by mapping the target domain to source domain. 
+
+In our remote sensing dataset, the target domain (VIIRS) has wider spatial coverage but with no label information. The Source domain (CALIPSO) has better representation for cloud types and is fully labeled, so mapping the target domain to source domain can preserve the discriminating power of the source domain and can also transfer it into the down-streaming learner. 
+
+We design a deep neural network to perform the Deep Domain Mapping (DDM) between the source and target domain. The input of the Deep Domain Mapping (DDM) network is the target domain data and the output of the network is the transformed target domain data in the source domain feature space. Because the source domain data and target domain data are collocated remote sensing data with the same longitude and latitude coordinates, Mean Square Error (MSE) loss function is used to measure the error of the DDM network. Specifically, given source domain training examples $D_s=\{x_i\}, x \in Rs^{d_s}, i=1,...,n_s$ and unlabeled target data set $D_t=\{u_i\}, u \in Rt^{d_t}, i=1,...,n_t$, with $d_s \neq d_t$ and $Rs \neq Rt$. Source domain and target domain are collocated data so we have $n_s=n_t$. The Deep Domain Mapping network (DDM) is learnt to transform the target domain into source domain feature space by minimizing loss function: 
+
+\begin{equation}
+    l_{mse} = \frac{1}{n_t}\sum_{(i=1)}^{n_t}(DDM(u_i)-x_i)^2
+    \label{eq:mse}
+\end{equation} 
+
+In our implementation, the neural network is a four layer dense network with ReLU as activation function and Dropout (0.5) in each layer, the input dimension is the number of features in target domain and the output dimension is the number of the features in the source domain. The Adam optimizer and Mean Square Error (MSE) loss function are used to train the mapper in the neural network. Figure~\ref{fig:mapping} shows the network architecture of the Deep Domain Mapping. 
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.4\linewidth]{./domainmapping.png}
+  \caption{Network Architecture of the Deep Domain Mapping for Heterogeneous Domains}
+  \label{fig:mapping}
+
+\end{figure}
+
+By minimizing the $L_2$ error we aim to map the features of the target domain into the feature space of the source domain that has better feature representation. Our Multiple domains experiments in Table \ref{tab:result} show DDM can significantly improve the classification accuracy, demonstrate that domain adaptation and correlation alignment work well on the multiple domains data from the same feature space. The proposed heterogeneous Deep Domain Mapping (DDM) network is also generic and flexible. It can be plugged into other domain adaptation methods and used in areas other than climate data analytics.
+
+\subsection{Domain Adaptation with Correlation Alignment}
+The Domain Adaptation in our DMSDA approach consists of a set of shared MLP feature layers (shown in Figure ~\ref{fig:framework}) that is used to extract the domain invariant representation between source and target domain, and a correlation layer that is used to minimize domain shifting by aligning the second order statistics of source and target data distributions. 
+
+After transforming the target domain into the feature space of source domain via DDM, the dimension of the transformed target domain is identical to dimension of the source domain and the source domain and target domain become homogeneous. The correlation alignment can be formulated as follows.  
+
+Given source domain training examples $D_s=\{x_i\}, x \in R^d$ with labels $L_s=\{y_i\}, i \in \{1, ..., L\}$ and unlabeled transformed target data set $D_t=\{x^*_i\}, x^* \in R^d$, we can compute the covariance matrix of the source domain and target domain, represented as $C_s$ and $C_t$ respectively. 
+
+\begin{equation}
+    C_s = \frac{1}{n_s - 1}(D^T_sD_s - \frac{1}{n_s}(1^TD_s)^T(1^TD_s))
+    \label{eq:src_cov}
+\end{equation} 
+
+\begin{equation}
+    C_t = \frac{1}{n_t - 1}(D^T_tD_t - \frac{1}{n_t}(1^TD_t)^T(1^TD_t))
+    \label{eq:src_cov}
+\end{equation} 
+
+We use the correlation loss proposed in \cite{Sun2016} to measure the distance between the second order statistics (covariances) of the source and target data: 
+
+\begin{equation}
+    l_{coral} = \frac{1}{4d^2}||C_s - C_t||_F^2
+    \label{eq:loss_coral}
+\end{equation} 
+, where $||.||_F$ denotes the squared matrix Frobenius norm and $d$ is the number of the features. 
+
+
+By combining the correlation loss with the classification loss, the joint loss function is training to learn the latent features that can work well on the target domain:
+
+\begin{equation}
+    l = l_{class} + \sum_{(i=1)}^{t}\lambda_i l_{coral}
+    \label{eq:loss_total}
+\end{equation} 
+Here, $t$ is the number of the correlation layers in the deep network and $\lambda_i$ is a weight that balances on the adaptation with the classification accuracy on the source domains. The classification loss and the correlation loss play counterparts and reach an equilibrium at the end of training so that the representative capacities of the source domain can be adapted to the target domain, so the final classifier performs well on the target domain with higher accuracy. 
+
+\subsection{Feature Augmentation}
+
+Following our previous work \cite{Wang2020}, we filter nighttime data records and choose the daytime records with 0 < solar zenith angle (SZA) < 80. Four auxiliary attributes shared in both CALIPSO and VIIRS datasets are surface temperatures, surface emissivity, surface type and snow ice index. The latitude and longitude of the pixel are also provided in both CALIPSO and VIIRS datasets. In total there are 6 auxiliary features (summarized in Table ~\ref{tab:CALVIIRSFeatures}) supplemented to both the source and target domains to train the domain adaptation model. The CALIPSO cloud labels are used as reference label information in collocated CALIPSO and VIIRS datasets. A collocation algorithm \cite{Holz2008} that fully considers the spatial differences between the two instruments and parallax effects are used to generate our collocated datasets. 
+
+\section{Experiments}
+
+\begin{table*}
+  \caption{Accuracy on predicting the cloud types on VIIRS (target) dataset.}
+  \label{tab:result}
+  \begin{tabular}{ccccccccccl}
+    \toprule
+    Models - Single Domain &Source & Target & Training & Validation & Day-138 & Day-142 & Day-144 & Day-147 & Day-154 & Day-155\\
+    \midrule
+    \texttt{Random Forest} & VIIRS & VIIRS & 0.858 & 0.824 & 0.659 & 0.649 & 0.658 & 0.67 & 0.709 & 0.655 \\
+    \texttt{MLP-CALIPSO}& CALIPSO & CALIPSO & 1.0 & 1.0 & 0.99 & 0.99 & 0.99 & 0.99 & 0.99 & 0.99\\
+    \texttt{MLP-VIIRS} & VIIRS & VIIRS & 0.71 & 0.7 & 0.651 & 0.642 & 0.647 & 0.65 & 0.695 & 0.636 \\
+    \toprule
+    Models - Multiple Domains &Source & Target & Training & Validation & Day-138 & Day-142 & Day-144 & Day-147 & Day-154 & Day-155\\
+    \midrule
+    \texttt{Domain Mapping Only} & CALIPSO & VIIRS & 0.990 & 0.670 & 0.550 & 0.560 & 0.530 & 0.540 & 0.560 & 0.530 \\
+    \texttt{Correlation Align. Only}& CALIPSO & VIIRS & 0.990 & 0.310 & 0.320 & 0.316 & 0.280 & 0.269 & 0.282 & 0.279\\
+    \texttt{DMSDA} & CALIPSO & VIIRS & 0.990 & 0.680 & 0.670 & 0.660 & 0.659 & 0.671 & 0.704 & 0.667 \\
+    \bottomrule
+  \end{tabular}
+\end{table*}
+
+
+We conduct several experiments on real world remote sensing datasets to compare the performance of our proposed model with the state-of-the-art models. 
+Our experiments help us answer the following key questions:
+\begin{itemize}
+    \item  How does our model (DMSDA) perform against many baseline models including non-domain adaptation and domain adaptation for cloud type prediction?
+    \item  What is the impact of deep domain mapping on the model performance? 
+    \item What is the impact of correlation alignment on the model performance?      
+    
+\end{itemize}
+
+\subsection{Datasets and Evaluation Metrics}
+
+% We evaluate the proposed Deep Multi-Sensor Domain Adaptation approach with domain mapping and correlation alignment on the active (source) and passive (target) remote satellite sensing datasets. 
+We conduct experiments on CALIPSO active sensor (source) and VIIRS passive sensor (target) remote satellite sensing datasets\cite{Wang2020}. 
+The training dataset is collocated 9-day (Day 101, 102, 106, 112, 114, 118, 122, 126 and 133) CALIPSO and VIIRS datasets containing 700,000 records. We then evaluate each built model by predicting the subsequent 6 days that are Day 138, 142, 144, 147, 154 and 155. Figure~\ref{fig:classes} shows the the number of records in each cloud type (class) for the training and test VIIRS datasets. Analyzing at the class distribution in the training dataset, as illustrated in Figure~\ref{fig:classes}, we can see some class imbalance with highest class label data available for 'Pure Liquid' and lowest class label data available for 'Pure Cloud'.
+
+\begin{figure*}[ht]
+  \centering
+  \includegraphics[width=0.6\linewidth]{./dataset.png}
+  \caption{Data distribution (data point count for each cloud type) for training and test VIIRS datasets (Day 138, 142, 144, 147, 154, 155).}
+  \label{fig:classes}
+
+\end{figure*}
+
+We used Accuracy as the evaluation metric to compare all the models:
+\begin{equation}
+    % Accuracy = \frac{True Positive + True Negative}{Total}
+    Accuracy = \frac{\text{Total number of correct predictions}}{\text{Total number of data points}}
+    \label{eq:accuracy}
+\end{equation} 
+
+\subsection{Performance Comparison using data from single domain}
+For non-domain adaptation model comparison, we conducted experiments on three baseline models which were trained on data from a single domain. These baseline models include
+\begin{itemize}
+\item Random Forest model: Random Forest trained on VIIRS data
+\item MLP-VIIRS: A deep learning based MLP Model trained on VIIRS data  
+\item MLP-CALIPSO: A deep learning based MLP Model trained on CALIPSO data
+\end{itemize}
+In order to make fair comparison to our proposed approach, we apply the same neural network used in the shared layer of our DMSDA network to build the neural network for baseline models (MLP-CALIPSO and MLP-VIIRS), with the same type and number of layers. In our experiments, the MLP (shared) layers are 4 dense layers with 128, 256, 128, 64 neurons respectively, each layer is followed with a ReLU activation function and Dropout (0.5). To train the Random Forest model, we specify 100 as the number of trees and 15 as the maximum depth of the trees in the forest.      
+
+For the single domain experiments, we can see the MLP-CALIPSO achieves 99\% accuracy in predicting the active sensing dataset, which is expected as we can see the data distribution of each cloud type is very discriminative from the CALIPSO pairwise plot shown in Figure~\ref{fig:pairwisec}. As an ML-based baseline result, Random Forest achieves around 85\% training, 82\% validation and around 70\% test accuracy. In comparison, MLP-VIIRS model has lower accuracy around 65\%, as VIIRS is a passive dataset collected by detecting the reflection of natural radiation and their feature discrimination power is weak, which can also be seen in VIIRS pairwise plot in Figure~\ref{fig:pairwisev}. This observation highlights the importance of using multiple sensors data to better understand and classify the unlabeled passive sensing data that has wider spatial coverage. Our proposed deep multi-sensor domain adaptation approach aims to achieve higher accuracy than using single domain data by transferring the discriminating power from the source domain to target domain.
+
+\subsection{Performance comparison of using data from multiple domains}
+For domain adaptation model comparisons, we conducted experiments on two more baseline models that use our heterogeneous domain mapping and correlation alignment respectively, using both source and target datasets.  These baseline models include the following:
+\begin{itemize}
+\item Domain Mapping Only: This model uses the deep domain mapping but no correlation alignment
+\item Correlation Alignment Only: This model uses the Correlation alignment but no Deep Domain Mapping strategy
+\end{itemize}
+
+% In particular, baseline Domain Mapping Only uses the deep domain mapping but no correlation alignment, while baseline Correlation Alignment Only uses the Correlation alignment but no Deep Domain Mapping. 
+Comparing these baseline models with our proposed DMSDA model can help understand the importance of each module in our approach.  
+
+%From the result of multiple sources based models in Table 1, our proposed DMSDA approach outperforms the Domain Mapping only approach and the Coral only approach with domain adaptation significantly. 
+From the result of multiple sources based models in Table~\ref{tab:result}, our proposed DMSDA approach outperforms the two domain adaptation baselines significantly. DMSDA improves the accuracy by 23\% in average of all the predictions from Day-138 to Day-155 when compared to using the Domain Mapping Only approach. It also has shown almost double accuracy improvement compared to the Correlation Alignment Only approach with domain adaptation that uses the raw source and target features. 
+
+\subsection{Impact of Domain Mapping}
+The very low accuracy (around 30\%) in predicting the cloud satellite data with Correlation Alignment Only approach exemplifies the inherent complexities in heterogeneous data representation and the challenge of directly applying existing domain adaptation methods in heterogeneous domains. Our proposed Deep Domain Mapping can mitigate the gap between the heterogeneous source and target domains and extract the domain invariant representation by integrating with the domain adaptation technique. 
+
+Our DMSDA approach's prediction accuracy is comparable or slightly better than the the widely used Random Forest Model in climate data analytics. This is reasonable when using the supervised learning approach such as Random Forest in the single target domain assuming the label information is fully available, however, our DMSDA approach is unsupervised domain adaptation that does not require any label information in the target domain, and solely rely on the label information of the source domain and the correlation between the source and target domain to build the model and make the prediction. Moreover, in Domain Adaptation, training on the target domain with target labels is the gold standard in many domain adaptation applications as that's the best the model can achieve. So the domain adaptation performance is upper bounded by the performance on the target domain dataset (i.e. trained on the target data and labels). However, typically in real applications target domain labels are unreliable or unavailable. Our problem setup is slightly different as the target domain labels are obtained from a different satellite (source domain) with co-located latitudes and longitudes. 
+%In the Discussion section, we will also discuss utilizing the weak labels from VIIRS (target) dataset to train the domain adaptation model. 
+
+\section{Discussion}
+Since this work is still in progress, we would like to discuss things we plan to focus on  next.
+
+\textbf{Model Optimization.}
+We will conduct more post analysis to understand what features and components contribute to the improvement of the model performance. We will also improve the domain adaptation network with joint optimization of the DDM $L2$ loss with terminal classification loss and correlation alignment loss.     
+
+\textbf{Detailed Evaluation.} We will perform more detailed evaluation to understand the capability of our model. First, we will measure accuracy and area under ROC (AUROC) for each of the six labels to know how well the trained model works for each label type. Second, we will study whether the test accuracy of different days is correlated with the similarity of data distribution, namely whether higher data distribution similarity between a test dataset and training dataset will lead to better performance (accuracy) for the test dataset.
+
+\textbf{Off-track Evaluation.} As mentioned in Section 1, passive sensors like VIIRS have better spatial coverage, and our goal is to apply the trained model to predict labels for all VIIRS pixels, a.k.a. off-track pixels, not just those collocated with CALIPSO, a.k.a. in-track pixels. Because we will not have CALIPSO labels for the off-track pixels, one way to evaluate the accuracy our trained model for these pixels is to leverage additional active sensors. For instance, as an active sensor, CloudSat also provides accurate cloud type detection results but its track is different from CALIPSO. We could use CloudSat data as labels to evaluate how good our trained model is for off-track pixels.  
+
+\textbf{Utilizing Weak Labels from VIIRS Dataset.} In our current work, cloud information (i.e., the labels) in VIIRS dataset is not used because it is not accurate enough. We plan to study whether the VIIRS cloud information could be used as weak labels to help train our deep learning model because it could provide some information for the off-track pixels. Then our overall learning task will change from unsupervised learning to weakly supervised learning \cite{Zhou2018} task. We will evaluate whether this approach could help improve the overall prediction accuracy even further. 
+%If the information could play a positive role in our overall cloud detection network architecture, .     
+
+\textbf{Model Training with More Dataset.} Both VIIRS and CALIPSO have been orbiting the Earth for many years, which means we could expand our model training dataset. We plan to use multiple years of collocated dataset as training data and test on another full year data. In this way, we could get more general model and avoid bias caused by temporal correlation, such as seasonality among the dataset.
+
+\textbf{Scalable Model Training with Large Dataset.} We estimate the overall volume of the above mentioned multi-year dataset will be over 1 TB. To deal with the big dataset, we plan to investigate scalable model training techniques including parallel model training on a GPU cluster and parallel hyperparameter tuning via the integration of big data engines like Spark \footnote[1]{Apache Spark Project,   http://spark.apache.org} or Dask \footnote[2]{Dask: Scalable analytics in Python, https://dask.org}.
+
+\textbf{Comparing to Other Deep Domain Adaptation Methods. } We plan to explore and compare with other state of art deep domain adaptation methods such as Adversarial Discriminative Domain Adaptation (ADDA) \cite{Tzeng2017}. We would like to integrate our Deep Domain Mapping module with ADDA and evaluate its effectiveness and portability.   
+
+\textbf{Utilizing Neighboring Pixels for Joint Prediction.} Our current network architecture trains and tests each pixel record independently. Because remote sensing data are often spatially correlated, we will investigate whether taking into the information of neighboring pixels and use of deep learning models that can capture spatial information (e.g., CNN and / or graph neural networks) could improve the cloud class prediction performance. 
+% For instance, we could use 3x3 pixel block as input to predict E.}  
+
+% One possible way to evaluate these models is to divide data into different subsets based on their spatial and temporal information, train each data subset individually and pick the most suitable model during test phase based on spatial and temporal information of the region to be tested
+
+\textbf{Utilizing Spatial Temporal Correlation.} Because our data has both spatial and temporal information, one potential improvement on top of our current work is to study how to capture spatial and temporal correlations from data and use them to help prediction. We plan to explore Graph Neural Network models such as Diffusion Convolutional Recurrent Neural Networks \cite{li2017diffusion} for capturing the spatial temporal correlations present in the remote sensing data. 
+\section{Conclusions}
+
+With the advances in remote sensing, we are seeing more and more satellites orbiting the Earth. 
+%Instead of retrieving information of geophysics variable  for each individual satellite, 
+By utilizing multiple satellite jointly, we could achieve better information retrieval for the targeted geophysics variables. Towards this goal, we propose a Deep Multi-Sensor Domain Adaptation method with heterogeneous domain mapping and correlation alignment to employ both active and passive sensing data in cloud type detection. Our experiments show our model can achieve higher accuracy in classifying the challenging passive remote sensing dataset by transferring the representation from the active sensing dataset. For future work, we plan to improve our method further based on the ideas in Discussion section.
+
+%Our future work aims to improve the model by exploring the inherent discriminative characteristic of each category, in addition to aligning the feature space globally with the second order covariance between the source and target domains. We further plan to incorporate the spatial representation of the remote sensing data into modeling and improve the domain invariant representation. 
+
+%%
+%% The acknowledgments section is defined using the "acks" environment
+%% (and NOT an unnumbered section). This ensures the proper
+%% identification of the section in the article metadata, and the
+%% consistent spelling of the heading.
+\begin{acks}
+This work is supported by grant CyberTraining: DSE: Cross-Training of Researchers in Computing, Applied Mathematics and Atmospheric Sciences using Advanced Cyberinfrastructure Resources (OAC--1730250), grant CAREER: Big Data Climate Causality Analytics (OAC--1942714), and grant CRII (IIS--1948399) from the National Science Foundation.
+\end{acks}
+
+%%
+%% The next two lines define the bibliography style to be used, and
+%% the bibliography file.
+
+\bibliographystyle{ACM-Reference-Format}
+\bibliography{sample-base}
+
+
+\end{document}
+\endinput
+%%
+%% End of file `sample-sigconf.tex'.
